@@ -9,9 +9,9 @@ A very very simple and stripped down integration of the [Google Maps JS API](htt
 2. Import it in your component
 3. Define it in your constructor
 4. Create a `<div>` in your DOM with an `id` of your preference. We will put our map in that `<div>`.
-5. Style your div, so that it has a specific height and width. The height and width can be given in pixels, in viewport height/width units (`vh`, `vw`), but NOT in percentage (`%`).
-6. You want to load your map after your view has been created, because you will be trying to access DOM elements (our div!). So, you will need to be implementing `AfterViewInit`.
-7. Ready to go!
+5. Style your div, so that it has a specific height and width. The height and width can be given in pixels, in viewport height/width units (`vh`, `vw`), etc, but __NOT__ in percentage (`%`) for both width and height.
+6. You want to load your map after your view has been created, because you will be trying to access DOM elements (our div!). So, you will need to be implementing [AfterViewInit](https://angular.io/guide/lifecycle-hooks#afterview).
+7. Ready to go! See it [live](https://mandarini.github.io/SimpleMap/)
 
 ## Why do we need this?
 

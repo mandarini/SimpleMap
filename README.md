@@ -3,6 +3,16 @@
 ## Description
 A very very simple and stripped down integration of the [Google Maps JS API](https://developers.google.com/maps/documentation/javascript/) and Angular.
 
+## How to?
+
+1. Create a gmap service and add the code provided in src/app/gmap.service.ts
+2. Import it in your component
+3. Define it in your constructor
+4. Create a `<div>` in your DOM with an `id` of your preference. We will put our map in that `<div>`.
+5. Style your div, so that it has a specific height and width. The height and width can be given in pixels, in viewport height/width units (`vh`, `vw`), but NOT in percentage (`%`).
+6. You want to load your map after your view has been created, because you will be trying to access DOM elements (our div!). So, you will need to be implementing `AfterViewInit`.
+7. Ready to go!
+
 ## Why do we need this?
 
 1. Maybe you don't want to install a new library to your project. You already know how to use the Google Maps JS API and you don't want to learn a new tool to do things you already know how to do.

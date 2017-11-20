@@ -39,30 +39,30 @@ export class GmapService {
          then returns it as a promise to init().
 
          Here, we create a Promise. In the promise, we pass a resolve function.
-         We want the promise to resolve when initMap callback is called.
-         This way we make sure that when we call init, we wait for initMap to be called.
-         initMap is called after the google.maps object has been added to the window.
 
-         So, the way we work is the following.
-         First, we check if this.loadAPI is defined (that is, if the promise has already been resolved)/
-         If it's undefined, then we load the Google Maps API script on the head tag,
-         then we wait for initMap callback.
-         When initMap is called, we resolve our promise, containing the google.maps object
-         that the Google Maps API script added to our window.
+         When the function "init()" is called:
 
-         The reason why we are not just writing "window.google.maps" is because
-         the property "google" is not inherent, and our compiler throws an error.
-         It still compiles, of course, because we don't ask for the google object
-         until it is safely added to window. However, we don't like to see errors
-         on the compiler, thus window['google'].maps, which is passed ok.
+         First, we check if this.loadAPI is defined (that is, if the promise has already been resolved).
+
+         If it's undefined, then we define it:
+         We add an "initMap" function to our window, so that it can be globally accessible,
+         once the Google Maps API script is called.
+         The reason for that, is because the Google Maps API script, once loaded,
+         will look for a global "initMap" function.
+         So, we need to have it defined, so that the script can find it and call it.
+         Once we define it, we load the Google Maps API script on the head tag.
+         
+         When initMap() is called, we know that the google.maps object exists!
+         Thus, we add it to the window and the resolve the promise!
+
        */
       get init(): Promise<any> {
           if (!this.loadAPI) {
               this.loadAPI = new Promise((resolve) => {
-                this.loadScript();
                 window['initMap'] = (ev: any) => {
-                      resolve(window['google'].maps);
+                    resolve(window['google'].maps);
                   };
+                this.loadScript();
               });
           }
           return this.loadAPI;

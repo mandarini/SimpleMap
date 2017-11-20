@@ -20,7 +20,7 @@ export class AppComponent implements AfterViewInit {
      * Init map api [google.maps]
      */
     this.gapi.init.then((maps: any) => {
-      const loc = new maps.LatLng(38, 23);
+      const loc = new maps.LatLng(37.971575, 23.726235);
 
       this.map = new maps.Map(this.mapElement.nativeElement, {
         zoom: 13,

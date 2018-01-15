@@ -31,6 +31,8 @@ Once the script is loaded, we call the window.google.maps object! :)
 Essentially, we create a function that loads the script. In that function, we pass a callback function that will be
 called when the script is indeed loaded. Once the script is loaded, we can use the google maps object.
 
+You can use this method to add any kind of scripts that add objects to the window asynchronously, eg. google analytics.
+
 It is just a simpler and more secure way of integrating the Google Maps JS API in your Angular application.
 
 _Disclaimer: This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0._

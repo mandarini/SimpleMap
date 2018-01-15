@@ -23,8 +23,14 @@ A very very simple and stripped down integration of the [Google Maps JS API](htt
 
 ## Why won't just adding the `<script>` from the GMJSAPI in my `<head>` won't work?
 
-Because, when the script is loaded, it tries to call a global function named "initMap". Since this function is not defined globally anywhere, it throws an error.
-What we do here, is we call the script after we have defined an initMap function and added it to the window object. This way, we are sure than when it is called, it is defined. One more thing we are certain about, in this case, is that when we try to load the map, calling the google object, it will be defined, too. It is just a simpler and more secure way of integrating the Google Maps JS API in your Angular application.
+Because it is loaded asynchronously, and we don't know when it the maps object is loaded.
+
+What we do here, is we add the script within the head tag and we add an event listener to it.
+Once the script is loaded, we call the window.google.maps object! :)
+
+Essentially, we create a function that loads the script. In that function, we pass a callback function that will be
+called when the script is indeed loaded. Once the script is loaded, we can use the google maps object.
+
+It is just a simpler and more secure way of integrating the Google Maps JS API in your Angular application.
 
 _Disclaimer: This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0._
-_Thanks: Thanks to [kavaliev](https://github.com/kamaliev/google-maps-angular2) because I used a part of a script from their library and for providing me with inspiration_

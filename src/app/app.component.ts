@@ -19,7 +19,9 @@ export class AppComponent implements AfterViewInit {
     /**
      * Init map api [google.maps]
      */
-    this.gapi.init.then((maps: any) => {
+    this.gapi.loadScript(() => {
+      const maps = window['google'].maps;
+      console.log(maps);
       const loc = new maps.LatLng(37.971575, 23.726235);
 
       this.map = new maps.Map(this.mapElement.nativeElement, {

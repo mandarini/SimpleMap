@@ -1,5 +1,8 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { GmapService } from './gmap.service';
+import { LoadScriptService } from './load-script.service';
+
+const your_API_key = 'AIzaSyAwVnwE1bEZf_Bkk_pSkGM0XlBSXJocVUY';
+const url = 'https://maps.googleapis.com/maps/api/js?key=' + your_API_key;
 
 @Component({
   selector: 'app-root',
@@ -11,19 +14,14 @@ export class AppComponent implements AfterViewInit {
 
   private map: any;
 
-  constructor(private gapi: GmapService) {
+  constructor(private load: LoadScriptService) {
   }
 
   ngAfterViewInit(): void {
 
-    /**
-     * Init map api [google.maps]
-     */
-    this.gapi.loadScript(() => {
-      const maps = window['google'].maps;
-      console.log(maps);
+    this.load.loadScript(url, 'gmap',() => {
+      const maps = window['google']['maps'];
       const loc = new maps.LatLng(37.971575, 23.726235);
-
       this.map = new maps.Map(this.mapElement.nativeElement, {
         zoom: 13,
         center: loc,

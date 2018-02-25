@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {GmapService} from './gmap.service';
+import { LoadScriptService } from './load-script.service';
 
 import { AppComponent } from './app.component';
 
@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule
   ],
-  providers: [GmapService],
+  providers: [LoadScriptService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
